@@ -8,13 +8,23 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HelloController extends AbstractController
 {
-    #[Route('/hello', name: 'app_hello', methods: ['GET'])]
-    public function index(): Response
+    #[Route(
+        '/hello/{name}',
+        name: 'app_hello',
+        methods: ['GET'],
+        requirements: [
+            'name' => '[a-zA-Z]+(-[a-zA-Z]+)?',
+        ],
+        defaults: [
+            'name' => 'Adrien',
+        ],
+    )]
+    public function index(string $name): Response
     {
         return new Response(
             content: <<<"HTML"
             <body>
-                Hello !
+                Hello {$name} !
             </body>
             HTML
         );
