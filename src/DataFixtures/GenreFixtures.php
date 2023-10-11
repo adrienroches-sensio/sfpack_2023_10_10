@@ -25,6 +25,7 @@ final class GenreFixtures extends Fixture
             ;
 
             $manager->persist($genre);
+            $this->addReference("Genre.{$genreName}", $genre);
         }
 
         $manager->flush();
