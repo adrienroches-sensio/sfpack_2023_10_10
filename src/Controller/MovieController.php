@@ -33,8 +33,12 @@ class MovieController extends AbstractController
     )]
     public function details(MovieRepository $movieRepository, string $slug): Response
     {
+        $movie = $movieRepository->getBySlug($slug);
+
+        $movie->setTitle('Plop');
+
         return $this->render('movie/details.html.twig', [
-            'movie' => Movie::fromEntity($movieRepository->getBySlug($slug)),
+            'movie' => Movie::fromEntity($movie),
         ]);
     }
 }
