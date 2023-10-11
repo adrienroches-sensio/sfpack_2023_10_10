@@ -47,7 +47,7 @@ class MovieController extends AbstractController
     #[Route(
         '/movies/new',
         name: 'app_movies_new',
-        methods: ['GET']
+        methods: ['GET', 'POST']
     )]
     #[Route(
         '/movies/{slug}/edit',
