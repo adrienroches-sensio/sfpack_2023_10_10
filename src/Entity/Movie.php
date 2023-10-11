@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
 #[ORM\ChangeTrackingPolicy('DEFERRED_EXPLICIT')]
+#[ORM\UniqueConstraint(name: 'IDX_UNIQUE_MOVIE_SLUG', fields: ['slug'])]
 class Movie
 {
     public final const SLUG_FORMAT = '\d{4}-'.Requirement::ASCII_SLUG;
