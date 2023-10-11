@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\MovieType;
 use App\Model\Movie;
 use App\Repository\MovieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,10 +36,22 @@ class MovieController extends AbstractController
     {
         $movie = $movieRepository->getBySlug($slug);
 
-        $movie->setTitle('Plop');
-
         return $this->render('movie/details.html.twig', [
             'movie' => Movie::fromEntity($movie),
+        ]);
+    }
+
+    #[Route(
+        '/movies/new',
+        name: 'app_movies_new',
+        methods: ['GET']
+    )]
+    public function new(): Response
+    {
+        $movieForm = $this->createForm(MovieType::class);
+
+        return $this->render('movie/new.html.twig', [
+            'movie_form' => $movieForm,
         ]);
     }
 }
