@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MovieRepository;
+use App\Validator\Constraints\MoviePosterExists;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -44,6 +45,7 @@ class Movie
     private ?\DateTimeImmutable $releasedAt = null;
 
     #[ORM\Column(length: 255)]
+    #[MoviePosterExists()]
     private ?string $poster = null;
 
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'movies')]
