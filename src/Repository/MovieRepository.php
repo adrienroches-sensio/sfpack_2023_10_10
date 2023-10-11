@@ -45,4 +45,24 @@ class MovieRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    /**
+     * @return list<Movie>
+     */
+    public function listAll(): array
+    {
+        return $this->findAll();
+    }
+
+    public function getBySlug(string $slug): Movie
+    {
+        $qb = $this->createQueryBuilder('movie');
+
+        $qb
+            ->andWhere($qb->expr()->eq('movie.slug', ':slug'))
+            ->setParameter('slug', $slug)
+        ;
+
+        return $qb->getQuery()->getSingleResult();
+    }
 }
