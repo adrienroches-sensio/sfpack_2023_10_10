@@ -31,7 +31,7 @@ class MovieController extends AbstractController
         '/movies/{slug}',
         name: 'app_movies_details',
         requirements: [
-            'slug' => '\d{4}-'.Requirement::ASCII_SLUG
+            'slug' => MovieEntity::SLUG_FORMAT,
         ],
         methods: ['GET']
     )]
@@ -53,7 +53,7 @@ class MovieController extends AbstractController
         '/movies/{slug}/edit',
         name: 'app_movies_edit',
         requirements: [
-            'slug' => '\d{4}-'.Requirement::ASCII_SLUG
+            'slug' => MovieEntity::SLUG_FORMAT,
         ],
         methods: ['GET', 'POST']
     )]
