@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Movie as MovieEntity;
 use App\Form\MovieType;
 use App\Model\Movie;
+use App\Omdb\Client\OmdbApiClientInterface;
 use App\Repository\MovieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +16,11 @@ use Symfony\Component\Routing\Requirement\Requirement;
 
 class MovieController extends AbstractController
 {
+    public function __construct(
+        private readonly OmdbApiClientInterface $omdbApiClient,
+    ) {
+    }
+
     #[Route(
         '/movies',
         name: 'app_movies_list',
@@ -54,10 +60,10 @@ class MovieController extends AbstractController
     )]
     public function detailsFromOmdb(string $imdbID): Response
     {
-        dd($imdbID);
+        $movie = $this->omdbApiClient->getByImdbId($imdbID);
 
         return $this->render('movie/details.html.twig', [
-            'movie' => Movie::fromEntity($movie),
+            'movie' => Movie::fromOmdb($movie),
         ]);
     }
 

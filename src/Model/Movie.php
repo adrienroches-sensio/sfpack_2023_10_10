@@ -6,8 +6,10 @@ namespace App\Model;
 
 use App\Entity\Genre as GenreEntity;
 use App\Entity\Movie as MovieEntity;
+use App\Omdb\Client\Model\Movie as MovieOmdb;
 use DateTimeImmutable;
 use function array_map;
+use function explode;
 use function str_starts_with;
 
 final class Movie
@@ -33,6 +35,18 @@ final class Movie
     public function isRemotePoster(): bool
     {
         return str_starts_with($this->poster, 'http');
+    }
+
+    public static function fromOmdb(MovieOmdb $movieOmdb): self
+    {
+        return new self(
+            slug: '',
+            title: $movieOmdb->Title,
+            plot: $movieOmdb->Plot,
+            poster: $movieOmdb->Poster,
+            releasedAt: new DateTimeImmutable($movieOmdb->Released),
+            genres: explode(', ', $movieOmdb->Genre),
+        );
     }
 
     public static function fromEntity(MovieEntity $movieEntity): self
