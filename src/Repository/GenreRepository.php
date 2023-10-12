@@ -21,6 +21,21 @@ class GenreRepository extends ServiceEntityRepository
         parent::__construct($registry, Genre::class);
     }
 
+    public function get(string $name): Genre
+    {
+        $genre = $this->findOneBy([
+            'name' => $name,
+        ]);
+
+        if (null === $genre) {
+            $genre = (new Genre())->setName($name);
+
+            $this->getEntityManager()->persist($genre);
+        }
+
+        return $genre;
+    }
+
 //    /**
 //     * @return Genre[] Returns an array of Genre objects
 //     */
