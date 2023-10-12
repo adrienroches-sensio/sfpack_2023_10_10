@@ -6,6 +6,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Genre;
 use App\Entity\Movie;
+use App\Model\Rating;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -34,6 +35,7 @@ final class MovieFixtures extends Fixture implements DependentFixtureInterface
             'poster' => '2002-asterix-et-obelix-mission-cleopatre.png',
             'releasedAt' => '30 Jan 2002',
             'genres' => ['Comedy'],
+            'rated' => 'G',
         ],
         [
             'slug' => '2017-le-sens-de-la-fete',
@@ -42,6 +44,7 @@ final class MovieFixtures extends Fixture implements DependentFixtureInterface
             'poster' => '2017-le-sens-de-la-fete.png',
             'releasedAt' => '04 Oct 2017',
             'genres' => ['Famille'],
+            'rated' => 'PG',
         ],
         [
             'slug' => '2009-avatar',
@@ -50,6 +53,7 @@ final class MovieFixtures extends Fixture implements DependentFixtureInterface
             'poster' => '2009-avatar.png',
             'releasedAt' => '16 Dec 2009',
             'genres' => [],
+            'rated' => 'R',
         ],
         [
             'slug' => '2015-une-merveille-histoire-du-temps',
@@ -58,6 +62,7 @@ final class MovieFixtures extends Fixture implements DependentFixtureInterface
             'poster' => '2015-une-merveille-histoire-du-temps.png',
             'releasedAt' => '21 Jan 2015',
             'genres' => ['Biopic', 'Drame'],
+            'rated' => 'PG-13',
         ],
     ];
 
@@ -70,6 +75,7 @@ final class MovieFixtures extends Fixture implements DependentFixtureInterface
                 ->setPoster($movieRaw['poster'])
                 ->setSlug($movieRaw['slug'])
                 ->setReleasedAt(new DateTimeImmutable($movieRaw['releasedAt']))
+                ->setRated(Rating::from($movieRaw['rated']))
             ;
 
             foreach ($movieRaw['genres'] as $genreName) {
