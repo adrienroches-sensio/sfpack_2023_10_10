@@ -20,6 +20,7 @@ final class Movie
     public function __construct(
         public readonly string $slug,
         public readonly string $title,
+        public readonly Rating $rated,
         public readonly string $plot,
         public readonly string $poster,
         public readonly DateTimeImmutable $releasedAt,
@@ -42,6 +43,7 @@ final class Movie
         return new self(
             slug: '',
             title: $movieOmdb->Title,
+            rated: Rating::tryFrom($movieOmdb->Rated) ?? Rating::GeneralAudiences,
             plot: $movieOmdb->Plot,
             poster: $movieOmdb->Poster,
             releasedAt: new DateTimeImmutable($movieOmdb->Released),
@@ -54,6 +56,7 @@ final class Movie
         return new self(
             slug: $movieEntity->getSlug(),
             title: $movieEntity->getTitle(),
+            rated: $movieEntity->getRated(),
             plot: $movieEntity->getPlot(),
             poster: $movieEntity->getPoster(),
             releasedAt: $movieEntity->getReleasedAt(),
