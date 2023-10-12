@@ -24,8 +24,8 @@ services:
             - '../src/Validator/'
             - '../src/Kernel.php'
 
-    App\Omdb\Client\:
-        resource: '../src/Omdb/Client/'
+    App\Omdb\:
+        resource: '../src/Omdb/'
         exclude:
             - '../src/Omdb/Client/Model/'
 
