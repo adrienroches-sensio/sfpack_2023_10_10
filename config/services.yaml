@@ -18,7 +18,17 @@ services:
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
+            - '../src/Model/'
+            - '../src/Omdb/'
+            - '../src/Validator/'
             - '../src/Kernel.php'
 
+    App\Omdb\Client\:
+        resource: '../src/Omdb/Client/'
+        exclude:
+            - '../src/Omdb/Client/Model/'
+
+    App\Validator\:
+        resource: '../src/Validator/**/*Validator.php'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
