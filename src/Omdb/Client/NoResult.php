@@ -27,8 +27,13 @@ final class NoResult extends Exception implements HttpExceptionInterface
         return [];
     }
 
-    public static function forId(string $imdbId, ?Throwable $previous = null): self
+    public static function forId(string $imdbID, ?Throwable $previous = null): self
     {
-        return new self("No movie found on OMDB API for IMDB ID '{$imdbId}'.", $previous);
+        return new self("No movie found on OMDB API for IMDB ID '{$imdbID}'.", $previous);
+    }
+
+    public static function searchingForTitle(string $title, Throwable|null $previous = null): self
+    {
+        return new self("No search results found on OMDB API for title '{$title}'.", $previous);
     }
 }
