@@ -2,7 +2,7 @@ Requirements
 ============
 
 1. [symfony-cli](https://symfony.com/download)
-2. PHP >= 8.1
+2. PHP >= 8.2
 3. pdo_sqlite
 4. composer
 5. yarn
@@ -25,4 +25,16 @@ $ yarn dev
 $ symfony console doctrine:migrations:migrate -n
 $ symfony console doctrine:fixtures:load -n
 $ symfony serve -d
+```
+
+Importing movies
+================
+
+```bash
+$ symfony console app:movies:import tt1298554 "harry potter" "spread your wings" "Hidden Figures" tt123456
+```
+
+Use the following to try the command without importing :
+```bash
+$ symfony console app:movies:import tt1298554 "harry potter" "spread your wings" "Hidden Figures" tt123456 --dry-run
 ```
