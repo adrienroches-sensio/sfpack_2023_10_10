@@ -35,9 +35,26 @@ class MovieController extends AbstractController
         ],
         methods: ['GET']
     )]
-    public function details(MovieRepository $movieRepository, string $slug): Response
+    public function detailsFromDatabase(MovieRepository $movieRepository, string $slug): Response
     {
         $movie = $movieRepository->getBySlug($slug);
+
+        return $this->render('movie/details.html.twig', [
+            'movie' => Movie::fromEntity($movie),
+        ]);
+    }
+
+    #[Route(
+        '/movies/{imdbID}',
+        name: 'app_movies_details_omdb',
+        requirements: [
+            'imdbID' => 'tt.{1,50}',
+        ],
+        methods: ['GET']
+    )]
+    public function detailsFromOmdb(string $imdbID): Response
+    {
+        dd($imdbID);
 
         return $this->render('movie/details.html.twig', [
             'movie' => Movie::fromEntity($movie),
