@@ -38,3 +38,11 @@ Use the following to try the command without importing :
 ```bash
 $ symfony console app:movies:import tt1298554 "harry potter" "spread your wings" "Hidden Figures" tt123456 --dry-run
 ```
+
+Log in
+======
+
+1. `adrien`/`adrien` [admin]
+2. `max`/`max` [admin]
+3. `lou`/`lou`
+4. `john`/`john`
