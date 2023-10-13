@@ -12,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Routing\Requirement\Requirement;
 
 class MovieController extends AbstractController
 {
@@ -70,12 +69,12 @@ class MovieController extends AbstractController
     }
 
     #[Route(
-        '/movies/new',
+        '/admin/movies/new',
         name: 'app_movies_new',
         methods: ['GET', 'POST']
     )]
     #[Route(
-        '/movies/{slug}/edit',
+        '/admin/movies/{slug}/edit',
         name: 'app_movies_edit',
         requirements: [
             'slug' => MovieEntity::SLUG_FORMAT,
