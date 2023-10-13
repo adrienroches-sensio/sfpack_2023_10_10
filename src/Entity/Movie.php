@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Model\Rating;
 use App\Repository\MovieRepository;
-use App\Validator\Constraints\MoviePosterExists;
 use App\Validator\Constraints\PosterValid;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
